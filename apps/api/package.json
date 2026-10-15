@@ -1,0 +1,19 @@
+{
+  "name": "api",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "core": "bun run src/index.ts",
+    "dev": "bun run core"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.8"
+  }
+}
