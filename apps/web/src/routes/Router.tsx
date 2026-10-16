@@ -9,19 +9,25 @@ const AuthLayout = Loadable(
   lazy(() => import("../components/layout/AuthLayout")),
 );
 
-const MyPage = Loadable(lazy(() => import("../pages/MyPage")));
-const AuthPage = Loadable(lazy(() => import("../pages/AuthPage")));
+const LoginPage = Loadable(lazy(() => import("../pages/Login")));
+const Dashboard = Loadable(lazy(() => import("../pages/Dashboard")));
+const ExpensesPage = Loadable(lazy(() => import("../pages/ExpensesPage")));
+const AddExpensePage = Loadable(lazy(() => import("../pages/AddExpensePage")));
 
 const Router = [
   {
     path: "/",
     element: NormalLayout,
-    children: [{ path: "/my-feature", element: MyPage }],
+    children: [
+      { path: "/dashboard", element: Dashboard },
+      { path: "/expenses", element: ExpensesPage },
+      { path: "/add", element: AddExpensePage },
+    ],
   },
   {
     path: "/",
     element: AuthLayout,
-    children: [{ path: "/auth/login", element: AuthPage }],
+    children: [{ path: "/auth/login", element: LoginPage }],
   },
   {
     path: "*",
