@@ -32,7 +32,7 @@ model Expense {
   amount     Int
   userId     String
   categoryId String
-  date       Int
+  date       DateTime
   notes      String?
 
   user     User     @relation(fields: [userId], references: [id])

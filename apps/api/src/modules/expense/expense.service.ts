@@ -10,7 +10,7 @@ export const FetchExpensesService = async (
   end_time?: string,
 ) => {
   const startTime = start_time ? new Date(start_time) : undefined;
-  const endTime = end_time ? new Date(end_time).toISOString() : undefined;
+  const endTime = end_time ? new Date(end_time) : undefined;
 
   const whereClause: any = {
     userId,
@@ -55,7 +55,7 @@ export const createExpenseService = async (
       title,
       amount,
       notes,
-      date: parseInt(date, 10),
+      date: new Date(date),
       category: {
         connect: {
           id: categoryId,
