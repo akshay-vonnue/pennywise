@@ -9,6 +9,7 @@ import logo from "/logo.png";
 function SignupPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -24,18 +25,20 @@ function SignupPage() {
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     const fetchData = async () => {
       console.log(formData);
-      const res = await fetch("http://localhost:8000/auth/login", {
+      const res = await fetch("http://localhost:8000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name: formData.name,
           email: formData.email,
           password: formData.password,
+          role: "CUSTOMER",
         }),
       });
       const data = await res.json();
@@ -43,12 +46,10 @@ function SignupPage() {
         toast.error(data.message);
         console.log("error");
       } else {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        toast.success("login success");
-        navigate("/dashboard", { replace: true });
+        toast.success("user created successfully");
+        navigate("/auth/login", { replace: true });
       }
-      setLoading(false)
+      setLoading(false);
     };
 
     fetchData();
@@ -61,6 +62,16 @@ function SignupPage() {
       </div>
       <FieldGroup>
         <Field>
+          <FieldLabel htmlFor="fieldgroup-name">Name</FieldLabel>
+          <Input
+            id="fieldgroup-name"
+            type="text"
+            name="name"
+            placeholder="name"
+            onChange={handleChange}
+          />
+        </Field>
+        <Field>
           <FieldLabel htmlFor="fieldgroup-email">Email</FieldLabel>
           <Input
             id="fieldgroup-email"
@@ -69,20 +80,20 @@ function SignupPage() {
             placeholder="name@example.com"
             onChange={handleChange}
           />
-          <Field>
-            <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
-            <Input
-              id="fieldgroup-password]"
-              placeholder="password"
-              type="password"
-              name="password"
-              onChange={handleChange}
-            />
-          </Field>
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
+          <Input
+            id="fieldgroup-password"
+            placeholder="password"
+            type="password"
+            name="password"
+            onChange={handleChange}
+          />
         </Field>
         <Field orientation="horizontal">
           <Button type="submit" onClick={handleSubmit}>
-            {loading ? "loading..." : "login"}
+            {loading ? "loading..." : "sign up"}
           </Button>
         </Field>
       </FieldGroup>
