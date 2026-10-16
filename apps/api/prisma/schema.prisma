@@ -18,9 +18,31 @@ enum UserRole {
 }
 
 model User {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   name         String
-  email        String   @unique
+  email        String    @unique
   passwordHash String
   role         UserRole
+  expenses     Expense[]
+}
+
+model Expense {
+  id         String  @id @default(cuid())
+  title      String
+  amount     Int
+  userId     String
+  categoryId String
+  date       Int
+  notes      String?
+
+  user     User     @relation(fields: [userId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@unique([title, categoryId, date])
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  expenses Expense[]
 }

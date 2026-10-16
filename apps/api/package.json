@@ -6,7 +6,8 @@
   "scripts": {
     "core": "bun run src/index.ts",
     "dev": "bun run core",
-    "test": "vitest --coverage"
+    "test": "vitest --coverage",
+    "db:seed":"bun run prisma/seed.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
