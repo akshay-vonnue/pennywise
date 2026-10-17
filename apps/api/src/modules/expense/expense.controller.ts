@@ -27,11 +27,12 @@ export const fetchExpensesController = async (req: Request, res: Response) => {
 export const createExpenseController = async (req: Request, res: Response) => {
   const { title, amount, categoryId, date, notes } = req.body;
   const id = (req as AuthenticatedRequest).userId;
+  console.log(title, amount, categoryId, date, notes, id);
   const result = await createExpenseService(
     id,
     title,
     categoryId,
-    amount,
+    Number(amount),
     date,
     notes,
   );
@@ -44,7 +45,6 @@ export const createExpenseController = async (req: Request, res: Response) => {
 export const updateExpenseController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { title, amount, categoryId, date, notes } = req.body;
-
   const result = await updateExpenseService(id as string, {
     title,
     amount,

@@ -72,7 +72,6 @@ function LoginPage() {
           <Field>
             <FieldLabel htmlFor="fieldgroup-password">Password</FieldLabel>
             <Input
-              id="fieldgroup-password]"
               placeholder="password"
               type="password"
               name="password"

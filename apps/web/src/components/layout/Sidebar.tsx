@@ -18,12 +18,12 @@ const paths = [
 
 function Sidebar() {
   return (
-    <div className="col-span-1 h-screen bg-emerald-800 rounded-r-md">
-      <div className="flex items-center border-b-2 border-b-amber-300">
+    <div className="col-span-1 h-screen bg-emerald-900 rounded-r-md">
+      <div className="flex items-center gap-4">
         <img src={logo} alt="logo" className="w-13 m-3" />
-        <h1 className="text-white font-bold">PennyWise expense tracker</h1>
+        <h1 className="text-white font-bold text-2xl">PennyWise</h1>
       </div>
-      <div className="flex flex-col items-center gap-4 mt-4 text-white">
+      <div className="flex flex-col items-center gap-8 mt-8 text-white">
         {paths.map((path) => (
           <Link to={path.url}>{path.name}</Link>
         ))}
