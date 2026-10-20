@@ -22,6 +22,17 @@ function ExpensesPage() {
     localStorage.getItem("categories") as string,
   );
 
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
+
+  const filterdExpenses = expenses.filter((expense) => {
+    if (selectedCategory === "ALL") return true;
+
+    console.log(selectedCategory);
+    return expense.categoryId === selectedCategory;
+  });
+
+  console.log("filtered expenses:", filterdExpenses);
+
   function resolveCategory(id: string) {
     return categories.find((cat) => cat.id === id);
   }
@@ -63,8 +74,9 @@ function ExpensesPage() {
               name=""
               id=""
               className="bg-white px-5 py-2 rounded-md text-black"
-              onChange={(e) => console.log(e.target.value)}
+              onChange={(e) => setSelectedCategory(e.target.value)}
             >
+              <option value="ALL">ALL</option>
               {categories.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.name}
@@ -77,7 +89,7 @@ function ExpensesPage() {
             </button>
           </div>
 
-          <div className="grid grid-cols-6 content-start overflow-scroll place-items-center mt-16 bg-white rounded-md gap-4 p-2 h-90">
+          <div className="grid grid-cols-6 content-start overflow-scroll place-items-center mt-16 bg-white rounded-md gap-4 p-2 min-h-88">
             <div className="font-bold text-black-300">id</div>
             <div className="font-bold text-black-300">title</div>
             <div className="font-bold text-black-300">Category</div>
@@ -85,7 +97,7 @@ function ExpensesPage() {
             <div className="font-bold text-black-300">Date</div>
             <div className="font-bold text-black-300">Actions</div>
 
-            {expenses.map((expense) => (
+            {filterdExpenses.map((expense) => (
               <React.Fragment key={expense.id}>
                 <div>
                   {expense.id.substring(0, 2) +

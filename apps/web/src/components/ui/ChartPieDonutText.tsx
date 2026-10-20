@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Label, Pie, PieChart } from "recharts";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -45,10 +44,6 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ChartPieDonutText({ expenses }: { expenses: Expense[] }) {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
-  }, []);
-
   return (
     <Card className="flex flex-col w-1/2 m-4 rounded-md">
       <CardContent className="flex-1 pb-0">

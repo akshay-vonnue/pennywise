@@ -28,7 +28,7 @@ function Dashboard() {
         <DatePickerWithRange date={date} setDate={setDate} />
       </div>
       <div className="flex p-2 px-4 gap-8">
-        <div className="border bg-white p-8 rounded-md">
+        <div className="border bg-white p-8 rounded-md w-1/5">
           <div className="bg-emerald-300 w-fit p-2 rounded-full">
             <Wallet className="text-white" />
           </div>
@@ -37,7 +37,7 @@ function Dashboard() {
             <span className="text-4xl text-emerald-700">{totalAmount}</span>
           </div>
         </div>
-        <div className="border bg-white p-8 rounded-md">
+        <div className="border bg-white p-8 rounded-md w-3/5">
           <div className="bg-blue-400 w-fit p-2 rounded-full">
             <PiggyBank className="text-white" />
           </div>
@@ -47,7 +47,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <ChartPieDonutText expenses={expenses}/>
+      <ChartPieDonutText expenses={expenses} />
     </div>
   );
 }
