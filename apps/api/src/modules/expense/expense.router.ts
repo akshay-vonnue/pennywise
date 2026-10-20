@@ -7,6 +7,7 @@ import {
 import {
   createExpenseController,
   deleteExpenseController,
+  fetchCategoriesController,
   fetchExpensesController,
   updateExpenseController,
 } from "./expense.controller";
@@ -43,5 +44,9 @@ router.delete(
     deleteExpenseController(req, res).catch(next);
   },
 );
+
+router.get("/category", (req: Request, res: Response, next: NextFunction) => {
+  fetchCategoriesController(req, res).catch(next);
+});
 
 export default router;

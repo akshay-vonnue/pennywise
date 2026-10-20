@@ -25,7 +25,7 @@ function Sidebar() {
       </div>
       <div className="flex flex-col items-center gap-8 mt-8 text-white">
         {paths.map((path) => (
-          <Link to={path.url}>{path.name}</Link>
+          <Link key={path.name} to={path.url}>{path.name}</Link>
         ))}
       </div>
     </div>

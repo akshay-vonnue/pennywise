@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import {
   createExpenseService,
   deleteExpenseService,
+  fetchCategories,
   FetchExpensesService,
   updateExpenseService,
 } from "./expense.service";
@@ -43,6 +44,7 @@ export const createExpenseController = async (req: Request, res: Response) => {
 };
 
 export const updateExpenseController = async (req: Request, res: Response) => {
+  console.log("body is:",req.body)
   const { id } = req.params;
   const { title, amount, categoryId, date, notes } = req.body;
   const result = await updateExpenseService(id as string, {
@@ -62,3 +64,9 @@ export const deleteExpenseController = async (req: Request, res: Response) => {
   const result = await deleteExpenseService(id as string);
   return res.status(200).json(result);
 };
+
+
+export const fetchCategoriesController = async (req: Request, res: Response) => {
+  const result = await fetchCategories();
+  return res.status(200).json(result)
+}

@@ -111,3 +111,10 @@ export const deleteExpenseService = async (id: string) => {
 
   return result;
 };
+
+
+export const fetchCategories = async () => {
+  const categories = await prisma.category.findMany()
+
+  return categories
+}

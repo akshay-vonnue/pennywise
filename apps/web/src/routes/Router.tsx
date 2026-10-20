@@ -30,7 +30,7 @@ const Router = [
     element: AuthLayout,
     children: [
       { path: "/auth/login", element: LoginPage },
-      { path: "auth/signup", element: signupPage },
+      { path: "/auth/signup", element: signupPage },
     ],
   },
   {

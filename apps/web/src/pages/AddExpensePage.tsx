@@ -16,20 +16,23 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { useExpense } from "@/hooks/useExpense";
 import toast from "react-hot-toast";
+import { expenseManager } from "@/hooks/useExpenseContext";
+import { Category } from "@/lib/types";
 
-const items = [
-  { label: "GYM", value: "GYM" },
-  { label: "Food", value: "Food" },
-];
+const categories: Category[] = JSON.parse(
+  localStorage.getItem("categories") as string,
+);
+console.log("categories is ", categories, typeof categories);
 
 // :used for Mapping the selectedCategory from UI to their categoryId
 // later we can either hardCode the categoryId or
 // fetch from the database if it is dynamix
-const categoryIdMapper: Record<string, string> = {
-  GYM: "cmvahwvwa0000eqrvyjpf8zkb",
-};
+function categoryNameToIdResolver(name: string) {
+  return categories.find((cat) => cat.name === name);
+}
 
 function AddExpensePage() {
+  const { setFetchDataController, counter } = expenseManager();
   const { addExpense } = useExpense();
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -63,13 +66,15 @@ function AddExpensePage() {
       toast.error("invalid amount");
       return;
     }
-    const categoryId = categoryIdMapper[data.categoryId];
+    console.log("adding data:", data);
+    const categoryId = categoryNameToIdResolver(data.categoryId)?.id;
     await addExpense({ ...data, categoryId, date });
+    setFetchDataController(counter + 1);
     setLoading(false);
   }
 
   return (
-    <div className="w-full h-screen bg-emerald-950 col-span-5 flex justify-center items-center text-white ">
+    <div className="w-full h-screenbg-emerald-950 col-span-5 flex justify-center items-center text-white ">
       <div className="w-1/2">
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <FieldGroup>
@@ -124,9 +129,9 @@ function AddExpensePage() {
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Fruits</SelectLabel>
-                            {items.map((item) => (
-                              <SelectItem key={item.value} value={item.value}>
-                                {item.label}
+                            {categories.map((item) => (
+                              <SelectItem key={item.name} value={item.name}>
+                                {item.name}
                               </SelectItem>
                             ))}
                           </SelectGroup>
