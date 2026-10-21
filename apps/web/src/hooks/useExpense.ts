@@ -2,13 +2,15 @@ import { Expense } from "@/lib/types";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-const token = localStorage.getItem("token");
+
 
 export const useExpense = () => {
+  const token = localStorage.getItem("token");
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [errorMessages, setErrorMessages] = useState("");
 
   const fetchExpenses = async () => {
+    console.log("token is",token)
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/expense`, {
       method: "GET",
       headers: {

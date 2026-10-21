@@ -10,6 +10,8 @@ function NormalLayout() {
   const { expenses, fetchDataController, setFetchDataController } =
     useExpenseContext();
   const user = localStorage.getItem("user") as string;
+  const token = localStorage.getItem("token") as string;
+  console.log("inside normal layout:",token)
 
   if (!user) {
     navigate("/auth/login");
