@@ -8,8 +8,9 @@ import React from "react";
 import { useState } from "react";
 import { DateRange } from "react-day-picker";
 import Modal from "./Modal";
-import { Category, Expense } from "@/lib/types";
+import { type Expense } from "@/lib/types";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
+import { fetchCategories } from "@/lib/categories";
 
 function ExpensesPage() {
   useDocumentTitle({ title: "expenses" });
@@ -20,9 +21,7 @@ function ExpensesPage() {
     expenses[0],
   );
 
-  const categories: Category[] = JSON.parse(
-    localStorage.getItem("categories") as string,
-  );
+  const categories = fetchCategories();
 
   const [selectedCategory, setSelectedCategory] = useState("ALL");
 

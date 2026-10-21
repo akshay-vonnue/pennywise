@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/select";
 import { useExpense } from "@/hooks/useExpense";
 import { expenseManager } from "@/hooks/useExpenseContext";
-import { Category, Expense } from "@/lib/types";
+import { type Expense } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Input } from "@/components/ui/input";
+import { fetchCategories } from "@/lib/categories";
 
 function Modal({
   expense,
@@ -30,9 +31,7 @@ function Modal({
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState<Date | undefined>(expense.date);
 
-  const categories: Category[] = JSON.parse(
-    localStorage.getItem("categories") as string,
-  );
+  const categories = fetchCategories();
   console.log("categories is ", categories, typeof categories);
 
   // :used for Mapping the selectedCategory from UI to their categoryId

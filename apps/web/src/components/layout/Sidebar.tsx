@@ -35,9 +35,9 @@ function Sidebar() {
           ))}
         </div>
       </div>
-      <div className="flex w-full bg-green-400 justify-center items-center gap-4 mb-12 p-3">
+      <div className="flex w-full justify-center items-center gap-4 mb-12 p-3">
         <AvatarDropdown imageUrl="https://raw.githubusercontent.com/antony-akshay/solana/refs/heads/main/nft/json-data/hue.png" />
-        <div>{user.name}</div>
+        <div className="text-white">{user.name}</div>
       </div>
     </div>
   );

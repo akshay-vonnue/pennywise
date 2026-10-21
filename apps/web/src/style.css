@@ -39,6 +39,12 @@
     --sidebar-accent-foreground: oklch(0.214 0.009 43.1);
     --sidebar-border: oklch(0.922 0.005 34.3);
     --sidebar-ring: oklch(0.714 0.014 41.2);
+
+    --color-GYM:rgb(86, 77, 209);
+    --color-FOOD:green;
+    --color-TRANSPORT:rgb(169, 226, 13);
+    --color-OTHER:rgb(201, 41, 41);
+    --color-ENTERTAINMENT:blue;
 }
 
 .dark {

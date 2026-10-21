@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-type AuthContextType = {
+export type AuthContextType = {
   id: string;
   name: string;
   email: string;

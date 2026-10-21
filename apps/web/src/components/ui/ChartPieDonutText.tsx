@@ -7,7 +7,7 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
-import { Expense } from "@/lib/types";
+import { Category, Expense } from "@/lib/types";
 
 const chartData = [
   { browser: "GYM", visitors: 275, fill: "var(--color-chrome)" },
@@ -18,34 +18,41 @@ const chartData = [
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
   GYM: {
     label: "GYM",
-    color: "red",
+    color: "indigo",
   },
   safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
+    label: "FOOD",
+    color: "var(--color-FOOD)",
   },
   firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
+    label: "TRANSPORT",
+    color: "var(--color-TRANSPORT)",
   },
   edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
+    label: "ENTERTAINMENT",
+    color: "var(--color-ENTERTAINMENT)",
   },
   other: {
-    label: "Other",
-    color: "var(--chart-5)",
+    label: "OTHER",
+    color: "var(--color-OTHER)",
   },
 } satisfies ChartConfig;
 
-export function ChartPieDonutText({ expenses }: { expenses: Expense[] }) {
+export function ChartPieDonutText({
+  expenses,
+  CategoryMap,
+}: {
+  expenses: Expense[];
+  CategoryMap: {
+    category: string | undefined;
+    amount: number;
+    fill: string;
+  }[];
+}) {
   return (
-    <Card className="flex flex-col w-1/2 m-4 rounded-md">
+    <Card className="flex flex-col m-4 rounded-md">
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
@@ -57,9 +64,9 @@ export function ChartPieDonutText({ expenses }: { expenses: Expense[] }) {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
-              data={expenses}
+              data={CategoryMap}
               dataKey="amount"
-              nameKey="title"
+              nameKey="category"
               innerRadius={60}
               strokeWidth={5}
             >

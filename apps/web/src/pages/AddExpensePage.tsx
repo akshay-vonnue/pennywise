@@ -17,12 +17,10 @@ import { Calendar } from "@/components/ui/calendar";
 import { useExpense } from "@/hooks/useExpense";
 import toast from "react-hot-toast";
 import { expenseManager } from "@/hooks/useExpenseContext";
-import { Category } from "@/lib/types";
 import useDocumentTitle from "@/hooks/useDocumentTitle";
+import { fetchCategories } from "@/lib/categories";
 
-const categories: Category[] = JSON.parse(
-  localStorage.getItem("categories") as string,
-);
+const categories = fetchCategories();
 console.log("categories is ", categories, typeof categories);
 
 // :used for Mapping the selectedCategory from UI to their categoryId
