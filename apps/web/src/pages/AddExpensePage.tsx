@@ -18,6 +18,7 @@ import { useExpense } from "@/hooks/useExpense";
 import toast from "react-hot-toast";
 import { expenseManager } from "@/hooks/useExpenseContext";
 import { Category } from "@/lib/types";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 const categories: Category[] = JSON.parse(
   localStorage.getItem("categories") as string,
@@ -32,6 +33,7 @@ function categoryNameToIdResolver(name: string) {
 }
 
 function AddExpensePage() {
+  useDocumentTitle({ title: "Add" });
   const { setFetchDataController, counter } = expenseManager();
   const { addExpense } = useExpense();
   const [loading, setLoading] = useState(false);

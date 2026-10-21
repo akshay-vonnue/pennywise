@@ -5,8 +5,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import logo from "/logo.png";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 function LoginPage() {
+  useDocumentTitle({title:"Login"})
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",

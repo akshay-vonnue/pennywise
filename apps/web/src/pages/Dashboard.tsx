@@ -1,5 +1,6 @@
 import { ChartPieDonutText } from "@/components/ui/ChartPieDonutText";
 import { DatePickerWithRange } from "@/components/ui/DatePickerWithRange";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 import { expenseManager } from "@/hooks/useExpenseContext";
 import { addDays } from "date-fns";
 import { PiggyBank, Wallet } from "lucide-react";
@@ -7,6 +8,7 @@ import { useState } from "react";
 import { DateRange } from "react-day-picker";
 
 function Dashboard() {
+  useDocumentTitle({title:"Dashboard"})
   const { expenses } = expenseManager();
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(new Date().getFullYear(), 0, 20),

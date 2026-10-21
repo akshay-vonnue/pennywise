@@ -9,8 +9,10 @@ import { useState } from "react";
 import { DateRange } from "react-day-picker";
 import Modal from "./Modal";
 import { Category, Expense } from "@/lib/types";
+import useDocumentTitle from "@/hooks/useDocumentTitle";
 
 function ExpensesPage() {
+  useDocumentTitle({ title: "expenses" });
   const [modalOpen, setModalOpen] = useState(false);
   const { expenses, counter, setFetchDataController } = expenseManager();
   const { deleteExpense } = useExpense();
@@ -120,6 +122,11 @@ function ExpensesPage() {
                 </div>
               </React.Fragment>
             ))}
+            {filterdExpenses.length === 0 && (
+              <div className="flex col-span-6 mt-8 text-red-400">
+                <div>no records found</div>
+              </div>
+            )}
           </div>
         </div>
       )}
