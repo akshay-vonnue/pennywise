@@ -24,8 +24,8 @@ function Sidebar() {
     <div className="col-span-1 h-screen bg-emerald-900 rounded-r-md flex flex-col justify-between">
       <div>
         <div className="flex items-center gap-4">
-          <img src={logo} alt="logo" className="min-w-[18%] max-w-[20%] m-3" />
-          <h1 className="text-white font-bold text-[140%]">PennyWise</h1>
+          <img src={logo} alt="logo" className="min-w-[18%] max-w-[20%] my-3 mx-1" />
+          <h1 className="text-white font-bold text-2xl">PennyWise</h1>
         </div>
         <div className="flex flex-col items-center gap-8 mt-8 text-white">
           {paths.map((path) => (

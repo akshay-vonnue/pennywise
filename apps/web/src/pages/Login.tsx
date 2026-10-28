@@ -45,8 +45,11 @@ function LoginPage() {
         toast.error(data.message);
         console.log("error");
       } else {
-        localStorage.setItem("token", data.token);
+        console.log("setting token and user to local storage")
+        console.log("data is",data)
         localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        console.log(JSON.stringify(data.user))
         toast.success("login success");
         navigate("/dashboard", { replace: true });
       }

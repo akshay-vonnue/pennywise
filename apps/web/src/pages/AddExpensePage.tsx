@@ -74,9 +74,12 @@ function AddExpensePage() {
   }
 
   return (
-    <div className="w-full h-screenbg-emerald-950 col-span-5 flex justify-center items-center text-white ">
-      <div className="w-1/2">
-        <form onSubmit={handleSubmit(handleFormSubmit)}>
+    <div className="h-full bg-emerald-950 col-span-5 flex justify-center items-center text-white overflow-hidden">
+      <div className="w-1/2 overflow-scroll scrollbar-none">
+        <form
+          onSubmit={handleSubmit(handleFormSubmit)}
+          className="overflow-hidden"
+        >
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="fieldgroup-title">title</FieldLabel>
@@ -93,54 +96,62 @@ function AddExpensePage() {
                   />
                 )}
               />
-              <Controller
-                name="amount"
-                control={control}
-                render={({ field }) => (
-                  <Field>
-                    <FieldLabel htmlFor="fieldgroup-amount">Amount</FieldLabel>
-                    <Input
-                      id="fieldgroup-amount"
-                      placeholder="amount"
-                      type="number"
-                      className="placeholder:text-gray-500"
-                      {...field}
-                    />
-                  </Field>
-                )}
-              />
-              <Controller
-                name="categoryId"
-                control={control}
-                render={({ field }) => (
-                  <div>
-                    <Field>
-                      <FieldLabel htmlFor="fieldgroup-amount">
-                        Category
-                      </FieldLabel>
-                      <Select
-                        value={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <SelectTrigger className="w-full max-w-48">
-                          <SelectValue placeholder="select a category..." />
-                        </SelectTrigger>
+              <div className="flex gap-4">
+                <div className="flex-1/2">
+                  <Controller
+                    name="amount"
+                    control={control}
+                    render={({ field }) => (
+                      <Field>
+                        <FieldLabel htmlFor="fieldgroup-amount">
+                          Amount
+                        </FieldLabel>
+                        <Input
+                          id="fieldgroup-amount"
+                          placeholder="amount"
+                          type="number"
+                          className="placeholder:text-gray-500"
+                          {...field}
+                        />
+                      </Field>
+                    )}
+                  />
+                </div>
+                <div className="flex-1">
+                  <Controller
+                    name="categoryId"
+                    control={control}
+                    render={({ field }) => (
+                      <div>
+                        <Field>
+                          <FieldLabel htmlFor="fieldgroup-amount">
+                            Category
+                          </FieldLabel>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                          >
+                            <SelectTrigger className="w-full max-w-48">
+                              <SelectValue placeholder="select a category..." />
+                            </SelectTrigger>
 
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Fruits</SelectLabel>
-                            {categories.map((item) => (
-                              <SelectItem key={item.name} value={item.name}>
-                                {item.name}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </Field>
-                  </div>
-                )}
-              />
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectLabel>Fruits</SelectLabel>
+                                {categories.map((item) => (
+                                  <SelectItem key={item.name} value={item.name}>
+                                    {item.name}
+                                  </SelectItem>
+                                ))}
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </Field>
+                      </div>
+                    )}
+                  />
+                </div>
+              </div>
             </Field>
             <Field>
               <FieldLabel htmlFor="fieldgroup-title">Select a date</FieldLabel>
